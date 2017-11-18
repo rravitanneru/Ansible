@@ -1,0 +1,162 @@
+we can select ssh conection type and username on host basis
+[targets]---------this is group name
+localhost----hostname            ansible_connection=local------connection type
+firstclient.example.com          ansible_connection=ssh         ansible_user=ec2-user ----username
+secondclient.example.com		 ansible_connection=ssh			ansible_user=ubuntu
+
+variable for hosts is useful incase if we are paasing same type servers to all hosts in the group
+for example in the defualt inventory file that is /etc/ansible/hosts
+
+[target]---group name
+host1
+host2
+
+[target:vars]
+ntp_server=ntp.example.com
+proxy_server=proxy.example.com
+
+defining the same in the yaml format
+
+target:
+  host1
+  host2
+  
+  vars:
+    ntp_server: ntp.example.com
+    proxy_server: proxy.example.com
+
+this variable will apply only on host level
+
+groups of groups and group varaibles
+In ansible it is possible to group the groups using chlidern term, group variables are like host variables which applies to groups
+
+example illustration
+
+default hosts file in /etc/ansible/hosts
+[andhra pradesh]------------group1
+vizag
+vijayawada
+
+[telangana]------------------group2
+hyderabad
+warangal
+
+[southindia:childern]------------------grouping the groups using childern
+andhra pradesh
+telangana
+
+[southindia:vars]
+ntp-server=ntp.example.com
+proxy_server=proxy.example.com
+
+[maharasta]---------group3
+mumbai
+nagapur
+[orissa]--------------group4
+bhuvaneswar
+cuttack
+[northindia:chlidern]-----------------this is grouping of grouping
+maharasta
+orissa
+[india:childern]
+southindia
+nothindia
+
+------------------------------------------------------------------------------------------------------------------------------------------
+defing the group of groups in yaml format
+
+all:
+  india:
+    chlidern:
+	  southinida:
+	    chlidern:
+		  andhra pradhesh:
+		   hosts:
+		     vizag
+			 vijayawada
+		  telangan:
+		    hosts:
+			  hyderabad
+			  warangal
+			  
+		vars:
+		ntp_server: ntp.example.com
+		proxy_sever: proxy.example.com
+		
+	  northindia:
+	    chlidern:
+		  maharsta:
+		    hosts:
+			  mumbai
+			  nagpur
+			  
+		  orissa:
+            hosts:
+              bhuvaneswar
+              cuttack			  
+	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

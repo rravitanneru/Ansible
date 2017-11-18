@@ -1,0 +1,43 @@
+ansible inventory is a group of hosts entered in /etc/ansible/hosts
+otherthan this inventory also will works with anisble by pass -i (path to inventory file) in command line
+formats of ansible inventory
+default inventory includes /etc/ansible/hosts
+ravi.cilent.com --------as plan client
+
+[webservers]
+webserver1.com
+webserver2.com
+
+[prod servers]
+prod1.com
+prod2.com
+
+this is the default format
+
+The inventory file in YAML configuraation
+all:
+  hosts:
+    childern:
+	  webservers:
+	    hosts:
+		  webserver1.com
+		  webserver2.com
+		  
+	  dbservers:
+	    hosts:
+		  dbserver1.com
+		  dbserver2.com
+		  
+		  
+if the host is not working default ssh port number 22
+we can specify like this webserver1.com:5306 in the inventory file
+if we have static ips want alias You can also describe hosts via variables:
+jumper ansible_port=5555 ansible_host=192.0.2.50 in default inventory file
+
+YAML format
+hosts:
+  jumper:
+    ansible_port: 5555
+    ansible_host: 192.0.2.50
+	
+In the above example, trying to ansible against the host alias “jumper” (which may not even be a real hostname) will contact 192.0.2.50 on port 5555. Note that this is using a feature of the inventory file to define some special variables. Generally speaking, this is not the best way to define variables that describe your system policy, but we’ll share suggestions on doing this later.
