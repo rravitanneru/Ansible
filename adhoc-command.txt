@@ -1,0 +1,2 @@
+to execute an adhoc command
+anisble target -m (module) ping (module) -i (paht to inventory file) inventory.txt
