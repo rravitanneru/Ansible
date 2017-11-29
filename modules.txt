@@ -1,0 +1,8 @@
+modules in Ansible is a simply code to do certain tasks
+
+ping module to ping
+
+yum 
+apt
+file------to place a file
+inline-----replace text in a file
