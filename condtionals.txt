@@ -1,0 +1,16 @@
+conditinals are very useful in conditional situations
+
+for example inventory file contains
+web    ansible_host=server1.example.com ansible_connection=ssh
+
+then we can write play as follows
+
+---
+- name: executing a sample installation
+  hosts: web
+  tasks:
+    - 
+      yum:
+        name: wget
+        state: present
+        when: ansible_host == 'server1.example.com' # example of conditional statement
