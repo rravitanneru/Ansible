@@ -1,0 +1,17 @@
+loops are used to install mutliple packages like
+
+---
+- name: executing a loop
+  hosts: web
+  tasks:
+    - 
+      name: loop begins
+      vars:
+        packages:
+          - 
+            wget
+            httpd
+            vim
+     yum:
+       name: "{{ packages }}"
+       state: present

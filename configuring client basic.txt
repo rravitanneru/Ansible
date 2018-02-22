@@ -1,0 +1,40 @@
+configuring the client after installing ansible in controlling machine #basic
+create or edit /etc/ansible/hosts file
+192.168.0.100--------------
+abc.exampleclient.com------{file contents}
+NOTE:Ansible public key is must be located in authorized keys in client machines
+This is called inventory 
+
+if we are managing ansible with password instead of ssh keys then we can setup ssh-agent to avoid repeated typing of password
+ssh=agent bash
+c-- ssh-add ~/.ssh/id_rsa --c this private-key  location
+(Depending on your setup, you may wish to use Ansible’s --private-key option to specify a pem file instead)
+c-- ansible all -m ping --c this ping all the nodes using same user of ansible control machine
+if the user is different from control machine we can specify it as -u <username>
+eg:
+
+ansible all -m ping -u <username>
+ansible all -m ping -u <username> --sudo
+ansible all -m ping -u <username> --sudo --sudo=<another username> connecting username but sudoing it to another username
+
+But the sudo is deprecated in latest version
+it is renamed as become
+ansible all -m ping -u username -b
+ansible all -m ping -u username -b --become-user another username
+
+Running live commands on all nodes
+ansible all -a "/bin/echo hello" where -a is adhoc
+
+HOST KEY CHECKING
+from ansible 1.2 has HOSTCHECKING by default 
+due to this if we reinstall any host which has different key in known_hosts or to add a new host to client/inventory list which needs confirmation as human
+intervention which can be avioded by modifing /etc/ansible/ansible.cfg or ~/.ansible.cfg
+
+[defaults]------------------------------{ file contents}
+host_key_checking = false---------------
+
+Alternatively this can be set by the ANSIBLE_HOST_KEY_CHECKING environment variable
+export ANSIBLE_HOST_KEY_CHECKING=False
+
+
+

@@ -1,0 +1,9 @@
+playbook is a single yaml file 
+play contains tasks which are to performed on certain hosts
+
+task includes
+
+1.Execute a command
+2. Run a script 
+3. Install a package
+4. Service stop or start
