@@ -1,7 +1,7 @@
 ---
 
 - name: installing apache
-  hosts: 192.168.133.129
+  hosts: all
  # remote_user: ravi
  # become: yes
 
