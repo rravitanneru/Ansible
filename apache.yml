@@ -1,9 +1,9 @@
 ---
 
 - name: installing apache
-  hosts: all
-  remote_user: ravi
-  become: yes
+  hosts: 192.168.133.129
+ # remote_user: ravi
+ # become: yes
 
   tasks:
     - name: installing apach2
