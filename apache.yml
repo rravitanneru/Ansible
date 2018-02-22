@@ -2,7 +2,7 @@
 
 - name: installing apache
   hosts: all
-  become: yes
+ # become: yes
 
   tasks:
     - name: installing apach2
