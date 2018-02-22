@@ -2,7 +2,8 @@
 
 - name: installing apache
   hosts: all
- # become: yes
+  remote_user: ravi
+  become: yes
 
   tasks:
     - name: installing apach2
