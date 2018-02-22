@@ -1,0 +1,10 @@
+---
+
+- name: installing apache
+  hosts: all
+  
+  tasks:
+    - name: installing apach2
+      apt: name=apache2 state=present
+    - name: strating the service
+      service: name=apache2 state=started
