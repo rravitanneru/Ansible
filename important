@@ -1,0 +1,5 @@
+1. ansible will ask for sudo password when become: true is used in the playbook
+2.this will end in a result 'permission denied'
+3. To overcome this problem we need to enable ask password = true in '/etc/ansible/ansible.cfg' file
+
+then use the playbook its fine
